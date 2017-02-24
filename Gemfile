@@ -34,3 +34,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "react_on_rails", "~> 6.6.0"
 gem "bootstrap-sass", "~> 3.3.7"
 gem "devise", "~> 4.2.0"
+
+gem 'mini_racer', "~> 0.1.8", platforms: :ruby
