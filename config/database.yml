@@ -6,12 +6,12 @@ default: &default
 
 development:
   <<: *default
-  database: the_app_development
+  database: ticket_master_development
   username: <%= Rails.application.secrets[:db_user] %>
   password: <%= Rails.application.secrets[:db_password] %>
 
 development:
   <<: *default
-  database: the_app_test
+  database: ticket_master_test
   username: <%= Rails.application.secrets[:db_user] %>
   password: <%= Rails.application.secrets[:db_password] %>
