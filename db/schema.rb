@@ -10,54 +10,66 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170224011131) do
+ActiveRecord::Schema.define(version: 20170226132623) do
 
-  create_table "agents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+  create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "email",                  default: "",                       null: false
+    t.string   "name"
+    t.string   "auth_token",             default: "F5D6IPrzpRmVj5rlLUJVlg", null: false
+    t.string   "encrypted_password",     default: "",                       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,                        null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_agents_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_agents_on_reset_password_token", unique: true, using: :btree
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+    t.index ["email"], name: "index_accounts_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "agents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_agents_on_account_id", using: :btree
+  end
+
+  create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.text     "body",       limit: 65535
+    t.string   "from_type"
+    t.integer  "from_id"
+    t.integer  "ticket_id"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.index ["from_type", "from_id"], name: "index_comments_on_from_type_and_from_id", using: :btree
+    t.index ["ticket_id"], name: "index_comments_on_ticket_id", using: :btree
   end
 
   create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_customers_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true, using: :btree
+    t.integer  "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_customers_on_account_id", using: :btree
   end
 
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "customer_id"
+    t.integer  "customer_id",                                  null: false
     t.integer  "agent_id"
-    t.text     "title",          limit: 65535,                 null: false
-    t.text     "description",    limit: 65535,                 null: false
-    t.string   "workflow_state",               default: "new"
+    t.string   "title"
+    t.text     "description",    limit: 65535
+    t.string   "workflow_state",               default: "new", null: false
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
     t.index ["agent_id"], name: "index_tickets_on_agent_id", using: :btree
     t.index ["customer_id"], name: "index_tickets_on_customer_id", using: :btree
   end
 
-  add_foreign_key "tickets", "agents"
+  add_foreign_key "agents", "accounts"
+  add_foreign_key "comments", "tickets"
+  add_foreign_key "customers", "accounts"
   add_foreign_key "tickets", "customers"
 end

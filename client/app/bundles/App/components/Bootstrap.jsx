@@ -20,9 +20,19 @@ export class MenuItem extends React.Component {
     };
   }
 
+  active() {
+    return !!this.props.active;
+  }
+
+  menuItemClasses(){
+    return classNames({
+      active: this.state.active
+    });
+  }
+
   render() {
     return (
-      <li className={ classNames({active: this.props.active}) }>
+      <li className={ this.menuItemClasses() }>
         {this.props.children}
       </li>
     );
@@ -138,11 +148,46 @@ export class NavBarHeader extends React.Component {
   }
 }
 
+export class Button extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+
+    this.state = {
+      to:      this.props.to || "/",
+      onClick: this.props.onClick || this.defaultClickHandler
+    };
+  }
+
+  handleClick(e) {
+    this.state.onClick(e);
+    e.preventDefault();
+  }
+
+  defaultClickHandler(e) { }
+
+  buttonClasses() {
+    return classNames(
+      "btn",
+      "btn-" + (this.props.type || "default")
+    );
+  }
+
+  render() {
+    return (
+      <button className={this.buttonClasses()} onClick={this.handleClick}>
+        {this.props.text || this.props.children}
+      </button>
+    );
+  }
+}
+
 export class ButtonLink extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      to: this.props.to || "/"
+      to:      this.props.to || "/",
+      onClick: this.props.onClick || this.defaultClickHandler
     };
   }
 
@@ -152,11 +197,54 @@ export class ButtonLink extends React.Component {
       "btn-" + (this.props.type || "default")
     );
   }
+
   render() {
     return (
       <Link to={this.state.to} className={this.buttonLinkClasses()}>
         {this.props.text || this.props.children}
       </Link>
+    );
+  }
+}
+
+export class ButtonGroup extends React.Component {
+  buttonGroupClasses() {
+    return classNames(
+      "btn-group",
+      "btn-group-" + (this.props.size || "")
+    );
+  }
+
+  render() {
+    return (
+      <div className={this.buttonGroupClasses()}>
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+
+export class Label extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      type: this.props.type || "default"
+    };
+  }
+
+  labelClasses(){
+    return classNames(
+      "label",
+      "label-" + this.props.type
+    );
+  }
+
+  render() {
+    return (
+      <span className={ this.labelClasses() }>
+        {this.props.children}
+      </span>
     );
   }
 }

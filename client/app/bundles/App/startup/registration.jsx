@@ -1,8 +1,8 @@
 import ReactOnRails from 'react-on-rails';
 
-import App from '../components/App';
+import CustomerDashboard from '../components/CustomerDashboard';
+import AgentDashboard    from '../components/AgentDashboard';
 
-// This is how react_on_rails can see the App in the browser.
 ReactOnRails.register({
-  App
+  CustomerDashboard, AgentDashboard
 });

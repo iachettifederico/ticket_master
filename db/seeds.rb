@@ -3,39 +3,34 @@
 # #
 # # Examples:
 # #
-# #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-# #   Character.create(name: 'Luke', movie: movies.first)
+# #   movies = Movie.create!([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
+# #   Character.create!(name: "Luke", movie: movies.first)
+
+fede = Account.create!(email: "iachetti.federico@gmail.com", password: "123456", password_confirmation: "123456")
+
+accounts = 1.upto(5).flat_map do |i|
+  pass= "123456"
+  [
+   Account.create!(name: "customer#{i}",      email: "customer#{i}@example.com",      password: pass, password_confirmation: pass),
+   Account.create!(name: "agent#{i}",         email: "agent#{i}@example.com",         password: pass, password_confirmation: pass),
+   Account.create!(name: "agentcustomer#{i}", email: "agentcustomer#{i}@example.com", password: pass, password_confirmation: pass)
+  ]
+end
+
+Customer.create!(account: Account.where(email: "iachetti.federico@gmail.com").first)
+Agent.create!(   account: Account.where(email: "iachetti.federico@gmail.com").first)
+
+customers = accounts.select {|account| account.email.include?("customer") }.map do |account|
+  Customer.create!(account: account)
+end
+
+agents = accounts.select {|account| account.email.include?("agent") }.map do |account|
+  Agent.create!(account: account)
+end
 
 
-# accounts = Account.create(
-#                          [
-#                           { email: 'iachetti.federico@gmail.com',
-#                            password: '123456', password_confirmation: '123456' },
-#                           { email: 'customer1@example.com',   password: '123456', password_confirmation: '123456' },
-#                           { email: 'customer2@example.com',   password: '123456', password_confirmation: '123456' },
-#                           { email: 'customer3@example.com',   password: '123456', password_confirmation: '123456' },
-#                           { email: 'agent1@example.com',      password: '123456', password_confirmation: '123456' },
-#                           { email: 'agent2@example.com',      password: '123456', password_confirmation: '123456' },
-#                           { email: 'agent3@example.com',      password: '123456', password_confirmation: '123456' },
-#                           { email: 'agentcustomer1@example.com', password: '123456', password_confirmation: '123456' },
-#                           { email: 'agentcustomer2@example.com', password: '123456', password_confirmation: '123456' },
-#                           { email: 'agentcustomer3@example.com', password: '123456', password_confirmation: '123456' },
-#                          ]
-#                         )
-
-# Customer.create(account: Account.where(email: "iachetti.federico@gmail.com").first)
-# Agent.create(   account: Account.where(email: "iachetti.federico@gmail.com").first)
-
-
-# customers = accounts.select {|account| account.email.include?("customer") }.map do |account|
-#   Customer.create(account: account)
-# end
-
-# agents = accounts.select {|account| account.email.include?("agent") }.map do |account|
-#   Agent.create(account: account)
-# end
-
-
-# 1.upto(20) do |i|
-#   Ticket.create(customer: customers.sample, agent: agents.sample, title: "Ticket #{i}", description: "Description for Ticket #{i}")
-# end
+1.upto(100) do |i|
+  Ticket.create!(customer: customers.sample,
+                 title: "Ticket #{i}",
+                 description: "Description for Ticket #{i}")
+end
