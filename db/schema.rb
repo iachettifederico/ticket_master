@@ -15,8 +15,9 @@ ActiveRecord::Schema.define(version: 20170226132623) do
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "",                       null: false
     t.string   "name"
-    t.string   "auth_token",             default: "NeUe4GxnGNrx9Re8HvL12g", null: false
+    t.string   "auth_token",             default: "SfOTwBBuK5gGZQZcXqfWtQ", null: false
     t.string   "encrypted_password",     default: "",                       null: false
+    t.boolean  "admin",                  default: false,                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -35,7 +36,6 @@ ActiveRecord::Schema.define(version: 20170226132623) do
     t.integer  "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_agents_on_account_id", using: :btree
   end
 
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -68,8 +68,5 @@ ActiveRecord::Schema.define(version: 20170226132623) do
     t.index ["customer_id"], name: "index_tickets_on_customer_id", using: :btree
   end
 
-  add_foreign_key "agents", "accounts"
   add_foreign_key "comments", "tickets"
-  add_foreign_key "customers", "accounts"
-  add_foreign_key "tickets", "customers"
 end

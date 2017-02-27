@@ -1,7 +1,7 @@
 class CreateCustomers < ActiveRecord::Migration[5.0]
   def change
     create_table :customers do |t|
-      t.references :account, foreign_key: true
+      t.references :account, null: true, foreign_key: false
 
       t.timestamps
     end

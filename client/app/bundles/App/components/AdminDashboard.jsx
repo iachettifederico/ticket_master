@@ -1,14 +1,9 @@
 import React, { PropTypes }           from 'react';
 import { Router, Route, hashHistory } from 'react-router';
 
-import Layout     from './Layout';
-
-import TicketList          from './TicketList';
-import TicketListContainer from '../containers/TicketListContainer';
-
-import Ticket     from './Ticket';
-import NewTicket  from './NewTicket';
-import NoMatch    from './NoMatch';
+import Layout              from './admin/Layout';
+import AccountListContainer from '../containers/admin/AccountListContainer';
+import NoMatch             from './NoMatch';
 
 export default class AdminDashboard extends React.Component {
   static propTypes = {
@@ -28,11 +23,7 @@ export default class AdminDashboard extends React.Component {
       <Router history={hashHistory}>
         <Route path=""                   component={Layout}
                account={this.state.account}>
-          <Route path="/"                  component={TicketListContainer}/>
-          <Route path="/tickets/customer"  component={TicketListContainer}/>
-          <Route path="/tickets/agent"     component={TicketListContainer}/>
-          <Route path="/tickets/new"       component={NewTicket}/>
-          <Route path="/tickets/:ticketId" component={Ticket}/>
+          <Route path="/"                  component={AccountListContainer}/>
           <Route path="*"                  component={NoMatch}/>
         </Route>
       </Router>

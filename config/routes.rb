@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
 
   get "dashboard/customer" => "spa#customer"
-  get "dashboard/agent" => "spa#agent"
+  get "dashboard/agent"    => "spa#agent"
+  get "dashboard/admin"    => "spa#admin"
 
   get "api/customer_tickets.json" => "api/tickets#customer_tickets"
   get "api/customer_tickets/:ticket_id.json" => "api/tickets#customer_ticket"
@@ -18,9 +19,15 @@ Rails.application.routes.draw do
   post "api/agent_tickets/:ticket_id/take.json" => "api/tickets#agent_take_ticket"
   post "api/agent_tickets/:ticket_id/resolve.json" => "api/tickets#agent_resolve_ticket"
   post "api/agent_tickets/:ticket_id/comments/new.json" =>
-  "api/tickets#new_agent_comment"
+    "api/tickets#new_agent_comment"
   post "api/customer_tickets/:ticket_id/comments/new.json" =>
-  "api/tickets#new_customer_comment"
+    "api/tickets#new_customer_comment"
+
+  get "api/accounts.json" => "api/accounts#index"
+
+  post "api/accounts/:account_id/admin_toggle.json" => "api/accounts#admin_toggle"
+  post "api/accounts/:account_id/customer_toggle.json" => "api/accounts#customer_toggle"
+  post "api/accounts/:account_id/agent_toggle.json" => "api/accounts#agent_toggle"
 
   root to: 'spa#dashboard'
 end

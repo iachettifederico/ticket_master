@@ -6,14 +6,14 @@
 # #   movies = Movie.create!([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 # #   Character.create!(name: "Luke", movie: movies.first)
 
-fede = Account.create!(email: "iachetti.federico@gmail.com", password: "123456", password_confirmation: "123456")
+fede = Account.create!(email: "iachetti.federico@gmail.com", password: "123456", admin: true)
 
 accounts = 1.upto(5).flat_map do |i|
   pass= "123456"
   [
-   Account.create!(name: "customer#{i}",      email: "customer#{i}@example.com",      password: pass, password_confirmation: pass),
-   Account.create!(name: "agent#{i}",         email: "agent#{i}@example.com",         password: pass, password_confirmation: pass),
-   Account.create!(name: "agentcustomer#{i}", email: "agentcustomer#{i}@example.com", password: pass, password_confirmation: pass)
+   Account.create!(name: "customer#{i}", email: "customer#{i}@example.com",      password: pass),
+   Account.create!(name: "agent#{i}",    email: "agent#{i}@example.com",         password: pass),
+   Account.create!(name: "agtcustr#{i}", email: "agentcustomer#{i}@example.com", password: pass)
   ]
 end
 

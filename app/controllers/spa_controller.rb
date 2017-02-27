@@ -13,6 +13,10 @@ class SpaController < ApplicationController
     render "agent", locals: { props: props }
   end
 
+  def admin
+    render "admin", locals: { props: props }
+  end
+
   private
 
   def account

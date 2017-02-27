@@ -4,6 +4,6 @@ class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :customer
-  has_one :agent
+  has_one :customer, dependent: :nullify
+  has_one :agent, dependent: :nullify
 end

@@ -10,4 +10,5 @@ module Accountable
   def role
     self.class.to_s.underscore
   end
+
 end
