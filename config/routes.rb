@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "api/new_agent_tickets.json" => "api/tickets#new_agent_tickets"
   get "api/agent_tickets/:ticket_id.json" => "api/tickets#agent_ticket"
   get "api/agent_tickets/:ticket_id/comments.json" => "api/tickets#agent_ticket_comments"
+  post "api/tickets/open.json" => "api/tickets#create"
   post "api/agent_tickets/:ticket_id/take.json" => "api/tickets#agent_take_ticket"
   post "api/agent_tickets/:ticket_id/resolve.json" => "api/tickets#agent_resolve_ticket"
   post "api/agent_tickets/:ticket_id/comments/new.json" =>

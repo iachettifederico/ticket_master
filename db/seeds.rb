@@ -29,7 +29,7 @@ agents = accounts.select {|account| account.email.include?("agent") }.map do |ac
 end
 
 
-1.upto(100) do |i|
+1.upto(30) do |i|
   Ticket.create!(customer: customers.sample,
                  title: "Ticket #{i}",
                  description: "Description for Ticket #{i}")

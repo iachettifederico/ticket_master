@@ -1,4 +1,15 @@
 class Api::TicketsController < Api::ApiController
+  def create
+    ticket = Ticket.create!(customer:    current_customer,
+                            title:       new_ticket_params[:title],
+                            description: new_ticket_params[:description])
+    if ticket
+      render json: {status: :success}
+    else
+      render json: {status: :error}
+    end
+  end
+
   def customer_tickets
     @tickets = current_customer.tickets
   end
@@ -28,18 +39,12 @@ class Api::TicketsController < Api::ApiController
   end
 
   def new_customer_comment
-    ap "-"*50
-    ap current_agent
-    ap "-"*50
     @comment = Comment.create!(ticket: ticket,
                               from: current_customer,
                               body: params[:body])
   end
 
   def new_agent_comment
-    ap "*"*50
-    ap current_agent
-    ap "*"*50
     @comment = Comment.create!(ticket: ticket,
                               from: current_agent,
                               body: params[:body])
@@ -65,5 +70,9 @@ class Api::TicketsController < Api::ApiController
 
   def ticket
     @ticket = Ticket.find(params[:ticket_id])
+  end
+
+  def new_ticket_params
+    params.require(:ticket).permit(:title, :description)
   end
 end

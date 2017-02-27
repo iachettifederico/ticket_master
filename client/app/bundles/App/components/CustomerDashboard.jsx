@@ -7,7 +7,7 @@ import TicketListContainer from '../containers/customer/TicketListContainer';
 import TicketContainer from '../containers/customer/TicketContainer';
 
 import Ticket     from './customer/Ticket';
-import NewTicket  from './NewTicket';
+import NewTicket  from './customer/NewTicket';
 import NoMatch    from './NoMatch';
 
 export default class CustomerDashboard extends React.Component {
