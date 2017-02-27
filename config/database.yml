@@ -10,7 +10,7 @@ development:
   username: <%= Rails.application.secrets[:db_user] %>
   password: <%= Rails.application.secrets[:db_password] %>
 
-development:
+test:
   <<: *default
   database: ticket_master_test
   username: <%= Rails.application.secrets[:db_user] %>

@@ -8,6 +8,6 @@ module Accountable
   end
 
   def role
-    self.class.to_s.downcase
+    self.class.to_s.underscore
   end
 end

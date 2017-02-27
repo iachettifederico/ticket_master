@@ -23,6 +23,8 @@ group :development, :test do
   gem "rspec-rails", "~> 3.5.2"
 end
 
+gem 'simplecov', require: false, group: :test
+
 group :development do
   gem 'web-console', '~> 3.4.0'
   gem 'listen', '~> 3.0.8'
