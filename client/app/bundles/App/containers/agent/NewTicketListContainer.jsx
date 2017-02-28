@@ -6,12 +6,12 @@ import { Button } from '../../components/Bootstrap';
 export default class NewTicketListContainer extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log(props)
     this.state = { tickets: [] };
   }
 
   fetchTickets(){
-    $.get('/api/new_agent_tickets.json').done((tickets) => {
+    $.get('/api/new_agent_tickets.json?token='+this.props.route.auth_token).done((tickets) => {
       this.setState({tickets: tickets});
     });
   }
@@ -25,7 +25,8 @@ export default class NewTicketListContainer extends React.Component {
 
   render() {
     return (
-      <TicketList tickets={this.state.tickets} />
+      <TicketList tickets={this.state.tickets}
+                  auth_token={this.props.route.auth_token}/>
     );
   }
 }

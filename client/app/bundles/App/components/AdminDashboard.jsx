@@ -19,12 +19,13 @@ export default class AdminDashboard extends React.Component {
   }
 
   render() {
+    const token = this.props.auth_token;
     return (
       <Router history={hashHistory}>
         <Route path=""                   component={Layout}
                account={this.state.account}>
-          <Route path="/"                  component={AccountListContainer}/>
-          <Route path="*"                  component={NoMatch}/>
+          <Route path="/" component={AccountListContainer} auth_token={token}/>
+          <Route path="*" component={NoMatch}/>
         </Route>
       </Router>
     );

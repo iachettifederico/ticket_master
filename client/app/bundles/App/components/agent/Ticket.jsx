@@ -17,16 +17,14 @@ export default class Ticket extends React.Component {
 
   take() {
     let url = "/api/agent_tickets/" + this.state.ticket.id + "/take.json";
-    $.post(url)
+    $.post(url, {token: this.props.auth_token})
       .done((ticket) => { });
-
   }
 
   resolve() {
     let url = "/api/agent_tickets/" + this.state.ticket.id + "/resolve.json";
-    $.post(url)
+    $.post(url, {token: this.props.auth_token})
       .done((ticket) => { });
-
   }
 
   takeButton() {
@@ -65,7 +63,7 @@ export default class Ticket extends React.Component {
           {this.state.ticket.description}
         </div>
         <div>
-          <CommentListContainer ticket={this.state.ticket}/>
+          <CommentListContainer ticket={this.state.ticket}  auth_token={this.props.auth_token}/>
         </div>
         <ButtonLink text="Back" to="/tickets" type="primary"/>
       </div>
@@ -81,7 +79,7 @@ export class CommentListContainer extends React.Component {
 
   fetchComments(){
     if(this.props.ticket && this.props.ticket.id) {
-      let url = '/api/tickets/'+ this.props.ticket.id + '/comments.json';
+      let url = '/api/tickets/'+ this.props.ticket.id + '/comments.json?token='+this.props.auth_token;
 
       $.get(url).done((comments) => {
         this.setState({comments: comments});
@@ -110,7 +108,7 @@ export class CommentListContainer extends React.Component {
               })
             }
           </div>
-          <NewComment ticket={this.props.ticket}/>
+          <NewComment ticket={this.props.ticket} auth_token={this.props.auth_token}/>
         </div>
       </div>
     );

@@ -12,7 +12,7 @@ export default class ResolvedTickets extends React.Component {
   }
 
   pdfDownloadLink() {
-    return(<a href="/api/reports/agent.pdf"
+    return(<a href={"/api/reports/agent.pdf?token="+this.props.auth_token}
            title="Download as PDF" target="#" download={true}>
             <FontAwesome icon="file-pdf-o" color="red"/>
            </a>);

@@ -16,7 +16,7 @@ export default class NewComment extends React.Component {
   render() {
     return (
       <form method="post"
-            action={"/api/tickets/" + this.props.ticket.id + "/comments/new.json"}>
+            action={"/api/tickets/" + this.props.ticket.id + "/comments/new.json?token="+this.props.auth_token}>
         <div className="form-group">
           <textarea id="new-comment-body" name="body" placeholder="Type your message" className="form-control" rows="3"/>
           <button type="submit" className="btn btn-primary">

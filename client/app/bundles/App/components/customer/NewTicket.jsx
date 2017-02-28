@@ -11,7 +11,9 @@ export default class NewTicket extends React.Component {
         <h3>Open a new ticket</h3>
         <form id="open-ticket-form" method="post"
               action={"/api/tickets/open.json"}>
-          
+          <input type="hidden" name="token"
+                 value={this.props.route.auth_token} />
+
           <div className="form-group">
             <input type="text" className="form-control"
                    id="new-ticket-title" name="ticket[title]"

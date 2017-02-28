@@ -23,7 +23,7 @@ export default class Layout extends React.Component {
 
             <Nav pullRight>
               <Dropdown title={this.state.account.email}>
-                <li><a href="#">Profile</a></li>
+                <li><a href="/">Switch Dashboard</a></li>
                 <Separator/>
                 <li>
                   <a rel="nofollow"

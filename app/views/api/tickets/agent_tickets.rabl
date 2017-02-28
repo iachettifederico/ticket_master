@@ -6,7 +6,6 @@ node(:customer) { |t|
   {
    email: t.customer.email,
    name:  t.customer.name
-
   }
 }
 node(:agent) { |t|

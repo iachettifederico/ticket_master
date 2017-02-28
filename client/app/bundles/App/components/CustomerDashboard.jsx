@@ -24,15 +24,16 @@ export default class CustomerDashboard extends React.Component {
   }
 
   render() {
+    const token = this.props.auth_token;
     return (
       <Router history={hashHistory}>
         <Route path=""                   component={Layout}
                account={this.state.account}>
-          <Route path="/"                  component={TicketListContainer}/>
-          <Route path="/tickets"           component={TicketListContainer}/>
-          <Route path="/tickets/agent"     component={TicketListContainer}/>
-          <Route path="/tickets/new"       component={NewTicket}/>
-          <Route path="/tickets/:ticketId" component={TicketContainer}/>
+          <Route path="/"                  component={TicketListContainer} auth_token={token}/>
+          <Route path="/tickets"           component={TicketListContainer} auth_token={token}/>
+          <Route path="/tickets/agent"     component={TicketListContainer} auth_token={token}/>
+          <Route path="/tickets/new"       component={NewTicket} auth_token={token}/>
+          <Route path="/tickets/:ticketId" component={TicketContainer} auth_token={token}/>
           <Route path="*"                  component={NoMatch}/>
         </Route>
       </Router>

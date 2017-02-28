@@ -9,7 +9,7 @@ export default class TicketListContainer extends React.Component {
   }
 
   fetchTickets(){
-    $.get('/api/customer_tickets.json').done((tickets) => {
+    $.get('/api/customer_tickets.json?token='+this.props.route.auth_token).done((tickets) => {
       this.setState({tickets: tickets});
     });
   }
@@ -25,7 +25,9 @@ export default class TicketListContainer extends React.Component {
     const _this = this;
     return (
       <div>
-        <TicketList tickets={this.state.tickets}/>
+        <TicketList tickets={this.state.tickets}
+                    auth_token={this.props.route.auth_token}/>
+
       </div>
     );
   }

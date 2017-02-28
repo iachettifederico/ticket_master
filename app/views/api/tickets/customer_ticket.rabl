@@ -4,9 +4,8 @@ attributes :id, :title, :description
 node(:state) { |t| t.workflow_state}
 node(:customer) { |t|
   {
-   email: t.customer.email,
-   name:  t.customer.name
-
+    email: t.customer.email,
+    name:  t.customer.name
   }
 }
 node(:agent) { |t|

@@ -10,6 +10,19 @@ class Account < ApplicationRecord
   has_many :customer_tickets, class_name: "Ticket", foreign_key: "customer_id"
   has_many :agent_tickets,    class_name: "Ticket", foreign_key: "agent_id"
 
+  def name
+    read_attribute(:name) || email
+  end
+
+  def to_h
+    {
+     email: email,
+     admin: admin?,
+     agent: agent?,
+     customer: customer?,
+    }
+  end
+
   def has_role?(role_or_name)
     role = Role[role_or_name]
     roles.include? role

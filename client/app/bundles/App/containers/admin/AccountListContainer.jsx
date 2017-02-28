@@ -11,7 +11,7 @@ export default class AccountListContainer extends React.Component {
   }
 
   fetchAccounts(){
-    $.get('/api/accounts.json').done((accounts) => {
+    $.get('/api/accounts.json?token='+this.props.route.auth_token).done((accounts) => {
       this.setState({accounts: accounts});
     });
   }
@@ -27,7 +27,8 @@ export default class AccountListContainer extends React.Component {
     const _this = this;
     return (
       <div>
-        <AccountList accounts={this.state.accounts}/>
+        <AccountList accounts={this.state.accounts}
+                     auth_token={this.props.route.auth_token}/>
       </div>
     );
   }

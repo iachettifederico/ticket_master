@@ -30,7 +30,7 @@ export default class TicketList extends React.Component {
           <tbody>
             {
               this.state.tickets.map((ticket) => {
-                return <TicketRow ticket={ticket} key={"ticket-" + ticket.id}/>;
+                return <TicketRow ticket={ticket} key={"ticket-" + ticket.id} auth_token={this.props.auth_token}/>;
               })
             }
           </tbody>
@@ -56,16 +56,14 @@ export class TicketRow extends React.Component {
 
   take() {
     let url = "/api/agent_tickets/" + this.state.ticket.id + "/take.json";
-    $.post(url)
+    $.post(url, {token: this.props.auth_token})
       .done((ticket) => { });
-
   }
 
   resolve() {
     let url = "/api/agent_tickets/" + this.state.ticket.id + "/resolve.json";
-    $.post(url)
+    $.post(url, {token: this.props.auth_token})
       .done((ticket) => { });
-
   }
 
   takeButton() {

@@ -11,7 +11,7 @@ export default class ReportsContainer extends React.Component {
   }
 
   componentDidMount() {
-    $.get('/api/reports/agent.json').done((tickets) => {
+    $.get('/api/reports/agent.json?token='+this.props.route.auth_token).done((tickets) => {
       this.setState({tickets: tickets});
     });
   }
@@ -19,7 +19,7 @@ export default class ReportsContainer extends React.Component {
   render() {
     const _this = this;
     return (
-      <ResolvedTickets tickets={this.state.tickets}/>
+      <ResolvedTickets tickets={this.state.tickets} auth_token={this.props.route.auth_token}/>
     );
   }
 }

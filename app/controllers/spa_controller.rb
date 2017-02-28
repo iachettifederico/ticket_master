@@ -19,12 +19,12 @@ class SpaController < ApplicationController
 
   private
 
-  def account
-    @account ||= Mystique.present(current_account)
-  end
-
   def props
-    @props ||= { account: account.to_h }
+    @props ||= {
+                account:     current_account.to_h,
+                admin_email: Account.admins.first.email,
+                auth_token:  current_account.auth_token
+               }
   end
 
 end

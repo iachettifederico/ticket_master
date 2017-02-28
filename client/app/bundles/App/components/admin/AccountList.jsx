@@ -30,7 +30,8 @@ export default class AccountList extends React.Component {
           <tbody>
             {
               this.state.accounts.map((account) => {
-                return <AccountRow account={account} key={"account-" + account.id}/>;
+                return <AccountRow account={account} key={"account-" + account.id}
+                                     auth_token={this.props.auth_token}/>;
               })
             }
           </tbody>
@@ -61,20 +62,20 @@ export class AccountRow extends React.Component {
       return <FontAwesome icon="times" color="red"/>;
     }
   }
-
+    
   toggleAdmin(e) {
     e.preventDefault();
-    $.post('/api/accounts/' + this.state.account.id + '/admin_toggle.json');
+    $.post('/api/accounts/' + this.state.account.id + '/admin_toggle.json?token='+this.props.auth_token);
   }
 
   toggleCustomer(e) {
     e.preventDefault();
-    $.post('/api/accounts/' + this.state.account.id + '/customer_toggle.json');
+    $.post('/api/accounts/' + this.state.account.id + '/customer_toggle.json?token='+this.props.auth_token);
   }
 
   toggleAgent(e) {
     e.preventDefault();
-    $.post('/api/accounts/' + this.state.account.id + '/agent_toggle.json');
+    $.post('/api/accounts/' + this.state.account.id + '/agent_toggle.json?token='+this.props.auth_token);
   }
 
   render() {

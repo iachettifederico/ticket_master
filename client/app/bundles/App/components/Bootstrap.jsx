@@ -12,6 +12,16 @@ export class Container extends React.Component {
   }
 }
 
+export class Well extends React.Component {
+  render() {
+    return (
+      <div className='well'>
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
 export class MenuItem extends React.Component {
   constructor(props) {
     super(props);

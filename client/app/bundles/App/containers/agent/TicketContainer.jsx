@@ -12,7 +12,7 @@ export default class TicketContainer extends React.Component {
   }
 
   fetchTicket(){
-    let url = '/api/agent_tickets/'+ this.state.ticketId + '.json';
+    let url = '/api/agent_tickets/'+ this.state.ticketId + '.json?token='+this.props.route.auth_token;
     $.get(url)
       .done((ticket) => {
         this.setState({ticket: ticket});
@@ -27,7 +27,7 @@ export default class TicketContainer extends React.Component {
     const _this = this;
     return (
       <div>
-        <Ticket ticket={this.state.ticket}/>
+        <Ticket ticket={this.state.ticket} auth_token={this.props.route.auth_token}/>
       </div>
     );
   }
