@@ -1,16 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Ticket, type: :model do
-  let(:cust_account) { Account.create!(email:    "cust@example.com", password: "123456") }
-  let(:agt_account)  { Account.create!(email:    "agt@example.com",  password: "123456") }
-  let(:customer)     { Customer.create!(account: cust_account) }
-  let(:agent)        { Agent.create!(account:    agt_account) }
+  let(:customer) { Account.create!(email: "cust@example.com", password: "123456") }
+  let(:agent)    { Account.create!(email: "agt@example.com",  password: "123456") }
 
   context "state" do
-    let(:ticket)       { Ticket.create!(customer:  customer) }
+    let(:ticket) { Ticket.create!(customer:  customer) }
 
     it "defaults to 'new' state" do
-
       expect(ticket.workflow_state).to eql "new"
     end
 

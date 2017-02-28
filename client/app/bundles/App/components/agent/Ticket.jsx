@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { ButtonLink, Button } from '../Bootstrap';
+import { ButtonLink, Button, ButtonGroup } from '../Bootstrap';
 import NewComment from '../NewComment';
 import { isEqual } from 'underscore';
 import { State } from '../State';
@@ -15,12 +15,52 @@ export default class Ticket extends React.Component {
     this.setState({ ticket: nextProps.ticket });
   }
 
+  take() {
+    let url = "/api/agent_tickets/" + this.state.ticket.id + "/take.json";
+    $.post(url)
+      .done((ticket) => { });
+
+  }
+
+  resolve() {
+    let url = "/api/agent_tickets/" + this.state.ticket.id + "/resolve.json";
+    $.post(url)
+      .done((ticket) => { });
+
+  }
+
+  takeButton() {
+    if(this.state.ticket.state == "new") {
+      return <Button type="primary" onClick={()=>{this.take();}}>Take</Button>;
+    }else {
+      return "";
+
+    }
+  }
+
+  resolveButton() {
+    if(this.state.ticket.state == "assigned") {
+      return(
+        <Button type="success"
+                onClick={()=>{this.resolve();}}>
+          Resolve
+        </Button>)
+      ;
+    }else {
+      return "";
+    }
+  }
+
   render() {
     return (
       <div>
         <h3>
           <State state={this.state.ticket.state}/> {this.state.ticket.title}
         </h3>
+        <ButtonGroup size="xs" role="group">
+          {this.takeButton()}
+          {this.resolveButton()}
+        </ButtonGroup>
         <div className="well">
           {this.state.ticket.description}
         </div>
@@ -41,7 +81,7 @@ export class CommentListContainer extends React.Component {
 
   fetchComments(){
     if(this.props.ticket && this.props.ticket.id) {
-      let url = '/api/agent_tickets/'+ this.props.ticket.id + '/comments.json';
+      let url = '/api/tickets/'+ this.props.ticket.id + '/comments.json';
 
       $.get(url).done((comments) => {
         this.setState({comments: comments});
@@ -70,7 +110,7 @@ export class CommentListContainer extends React.Component {
               })
             }
           </div>
-          <NewComment ticket={this.props.ticket} role="agent"/>
+          <NewComment ticket={this.props.ticket}/>
         </div>
       </div>
     );
@@ -95,4 +135,3 @@ export class Comment extends React.Component {
     );
   }
 }
-

@@ -4,26 +4,26 @@ class Api::TicketsController < Api::ApiController
                             title:       new_ticket_params[:title],
                             description: new_ticket_params[:description])
     if ticket
-      render json: {status: :success}
+      redirect_to "/dashboard/customer/#/tickets/#{ticket.id}"
     else
       render json: {status: :error}
     end
   end
 
   def customer_tickets
-    @tickets = current_customer.tickets
+    @tickets = current_customer.customer_tickets
   end
 
   def customer_ticket
     ticket
   end
 
-  def customer_ticket_comments
+  def ticket_comments
     @comments = ticket.comments
   end
 
   def agent_tickets
-    @tickets = current_agent.tickets.assigned
+    @tickets = current_agent.agent_tickets.assigned
   end
 
   def new_agent_tickets
@@ -34,25 +34,19 @@ class Api::TicketsController < Api::ApiController
     ticket
   end
 
-  def agent_ticket_comments
+  def ticket_comments
     @comments = ticket.comments
   end
 
-  def new_customer_comment
+  def new_comment
     @comment = Comment.create!(ticket: ticket,
-                              from: current_customer,
-                              body: params[:body])
-  end
-
-  def new_agent_comment
-    @comment = Comment.create!(ticket: ticket,
-                              from: current_agent,
+                              account: current_account,
                               body: params[:body])
   end
 
   def agent_take_ticket
     if ticket.assign!(current_agent)
-      render json: {status: "success"}
+      redirect_to "/dashboard/agent#/tickets/#{ticket.id}"
     else
       render json: {status: "error"}
     end
@@ -60,7 +54,7 @@ class Api::TicketsController < Api::ApiController
 
   def agent_resolve_ticket
     if ticket.resolve!
-      render json: {status: "success"}
+      redirect_to "/dashboard/agent#/tickets/#{ticket.id}"
     else
       render json: {status: "error"}
     end

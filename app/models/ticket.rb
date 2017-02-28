@@ -1,6 +1,6 @@
 class Ticket < ApplicationRecord
-  belongs_to :customer
-  belongs_to :agent, optional: true
+  belongs_to :customer, class_name: "Account", foreign_key: "customer_id", optional: true
+  belongs_to :agent,    class_name: "Account", foreign_key: "agent_id"   , optional: true
 
   has_many :comments
 

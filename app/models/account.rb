@@ -4,6 +4,36 @@ class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, :trackable, :validatable
 
-  has_one :customer, dependent: :nullify
-  has_one :agent, dependent: :nullify
+  has_many :account_roles
+  has_many :roles, through: :account_roles
+
+  has_many :customer_tickets, class_name: "Ticket", foreign_key: "customer_id"
+  has_many :agent_tickets,    class_name: "Ticket", foreign_key: "agent_id"
+
+  def has_role?(role_or_name)
+    role = Role[role_or_name]
+    roles.include? role
+  end
+
+  def admin?
+    has_role? :admin
+  end
+
+  def agent?
+    has_role? :agent
+  end
+
+  def customer?
+    has_role? :customer
+  end
+
+  def toggle_role(role_name)
+    role = Role[role_name]
+    if has_role?(role)
+      self.roles.delete(role)
+    else
+      self.roles << role
+    end
+    touch
+  end
 end

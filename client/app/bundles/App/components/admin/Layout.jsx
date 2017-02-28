@@ -18,8 +18,7 @@ export default class Layout extends React.Component {
           <NavBarHeader>Ticket Master</NavBarHeader>
           <NavBarCollapse>
             <Nav>
-              <MenuItem><Link to="/">My Tickets</Link></MenuItem>
-              <MenuItem><Link to="/tickets/new">New Tickets</Link></MenuItem>
+              <MenuItem><Link to="/">Accounts</Link></MenuItem>
             </Nav>
 
             <Nav pullRight>

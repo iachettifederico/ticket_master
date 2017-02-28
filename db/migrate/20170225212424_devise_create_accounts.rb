@@ -7,7 +7,6 @@ class DeviseCreateAccounts < ActiveRecord::Migration[5.0]
       t.string :auth_token,         null: false,
         default: SecureRandom.urlsafe_base64(nil, false)
       t.string :encrypted_password, null: false, default: ""
-      t.boolean :admin,             null: false, default: false
 
       ## Recoverable
       t.string   :reset_password_token

@@ -10,14 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226132623) do
+ActiveRecord::Schema.define(version: 20170228132623) do
+
+  create_table "account_roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "account_id"
+    t.integer  "role_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_roles_on_account_id", using: :btree
+    t.index ["role_id"], name: "index_account_roles_on_role_id", using: :btree
+  end
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "",                       null: false
     t.string   "name"
-    t.string   "auth_token",             default: "SfOTwBBuK5gGZQZcXqfWtQ", null: false
+    t.string   "auth_token",             default: "PEZyCEGcPjQqI_ZfzLZ29A", null: false
     t.string   "encrypted_password",     default: "",                       null: false
-    t.boolean  "admin",                  default: false,                    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -32,41 +40,32 @@ ActiveRecord::Schema.define(version: 20170226132623) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true, using: :btree
   end
 
-  create_table "agents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "account_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.text     "body",       limit: 65535
-    t.string   "from_type"
-    t.integer  "from_id"
+    t.integer  "account_id"
     t.integer  "ticket_id"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
-    t.index ["from_type", "from_id"], name: "index_comments_on_from_type_and_from_id", using: :btree
+    t.index ["account_id"], name: "index_comments_on_account_id", using: :btree
     t.index ["ticket_id"], name: "index_comments_on_ticket_id", using: :btree
   end
 
-  create_table "customers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "account_id"
+  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_customers_on_account_id", using: :btree
   end
 
   create_table "tickets", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.integer  "customer_id",                                  null: false
+    t.integer  "customer_id"
     t.integer  "agent_id"
     t.string   "title"
     t.text     "description",    limit: 65535
     t.string   "workflow_state",               default: "new", null: false
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-    t.index ["agent_id"], name: "index_tickets_on_agent_id", using: :btree
-    t.index ["customer_id"], name: "index_tickets_on_customer_id", using: :btree
   end
 
-  add_foreign_key "comments", "tickets"
+  add_foreign_key "account_roles", "accounts"
+  add_foreign_key "account_roles", "roles"
 end

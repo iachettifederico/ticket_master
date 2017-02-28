@@ -41,7 +41,7 @@ export class CommentListContainer extends React.Component {
 
   fetchComments(){
     if(this.props.ticket && this.props.ticket.id) {
-      let url = '/api/customer_tickets/'+ this.props.ticket.id + '/comments.json';
+      let url = '/api/tickets/'+ this.props.ticket.id + '/comments.json';
 
       $.get(url).done((comments) => {
         this.setState({comments: comments});
@@ -70,7 +70,7 @@ export class CommentListContainer extends React.Component {
               })
             }
           </div>
-          <NewComment ticket={this.props.ticket} role="customer"/>
+          <NewComment ticket={this.props.ticket}/>
         </div>
       </div>
     );

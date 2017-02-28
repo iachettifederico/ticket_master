@@ -17,15 +17,3 @@ node(:agent) { |t|
     }
   end
 }
-node(:comments) { |t|
-  t.comments.map { |comment|
-    {
-     id:   comment.id,
-     body: comment.body,
-     from: {
-            name: comment.from.name,
-            type: comment.from.role
-           }
-    }
-  }
-}

@@ -1,11 +1,15 @@
 import React, { PropTypes } from 'react';
 
 export default class NewTicket extends React.Component {
+  submit(e) {
+    e.preventDefault();
+    $("#open-ticket-form").submit();
+  }
   render() {
     return (
       <div>
         <h3>Open a new ticket</h3>
-        <form method="post"
+        <form id="open-ticket-form" method="post"
               action={"/api/tickets/open.json"}>
           
           <div className="form-group">
@@ -17,7 +21,8 @@ export default class NewTicket extends React.Component {
                       name="ticket[description]" rows="10"
                       placeholder="Describe the problem in as much detail as possible"/>
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary"
+                    onClick={(e)=>{this.submit(e);}}>
               Submit
             </button>
           </div>

@@ -10,6 +10,36 @@
         null,
         1,
         1,
+        null,
+        1,
+        1,
+        null,
+        1,
+        6,
+        6,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        0,
+        null,
         null
       ],
       "/home/fedex/code/ticket_master/app/models/application_record.rb": [
@@ -19,6 +49,17 @@
       ],
       "/home/fedex/code/ticket_master/app/helpers/application_helper.rb": [
         1,
+        null
+      ],
+      "/home/fedex/code/ticket_master/app/models/role.rb": [
+        1,
+        1,
+        1,
+        null,
+        1,
+        12,
+        12,
+        null,
         null
       ],
       "/home/fedex/code/ticket_master/app/controllers/tickets_controller.rb": [
@@ -39,20 +80,9 @@
         1,
         0,
         null,
-        null
-      ],
-      "/home/fedex/code/ticket_master/app/models/accountable.rb": [
-        1,
-        1,
-        2,
-        null,
         null,
         1,
-        1,
-        null,
-        null,
-        1,
-        1,
+        0,
         null,
         null
       ],
@@ -102,19 +132,9 @@
         null,
         null
       ],
-      "/home/fedex/code/ticket_master/app/models/customer.rb": [
+      "/home/fedex/code/ticket_master/app/models/account_role.rb": [
         1,
         1,
-        1,
-        null,
-        1,
-        null
-      ],
-      "/home/fedex/code/ticket_master/app/models/agent.rb": [
-        1,
-        1,
-        1,
-        null,
         1,
         null
       ],
@@ -135,13 +155,17 @@
         null,
         null,
         1,
-        null,
         1,
-        2,
         null,
         null,
         1,
-        2,
+        null,
+        1,
+        3,
+        null,
+        null,
+        1,
+        3,
         null,
         null,
         null
@@ -151,7 +175,7 @@
         1,
         null,
         null,
-        2,
+        3,
         null,
         null
       ],
@@ -168,6 +192,33 @@
         0
       ],
       "/home/fedex/code/ticket_master/app/channels/application_cable/channel.rb": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "/home/fedex/code/ticket_master/app/controllers/api/accounts_controller.rb": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -280,6 +331,6 @@
         0
       ]
     },
-    "timestamp": 1488227453
+    "timestamp": 1488259622
   }
 }
