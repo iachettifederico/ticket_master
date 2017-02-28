@@ -211,7 +211,9 @@ export class ButtonGroup extends React.Component {
   buttonGroupClasses() {
     return classNames(
       "btn-group",
-      "btn-group-" + (this.props.size || "")
+      "btn-group-" + (this.props.size || ""),
+      {"btn-group-vertical": !!this.props.vertical},
+      {"btn-group-justified": !!this.props.justified}
     );
   }
 

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :accounts
   resources :pepes
 
+  root to: 'spa#dashboard'
   get "dashboard/customer" => "spa#customer"
   get "dashboard/agent"    => "spa#agent"
   get "dashboard/admin"    => "spa#admin"
@@ -29,5 +30,4 @@ Rails.application.routes.draw do
   get "api/reports/agent.json" => "api/reports#agent_reports"
   get "api/reports/agent.pdf" => "api/reports#agent_reports"
 
-  root to: 'spa#dashboard'
 end
