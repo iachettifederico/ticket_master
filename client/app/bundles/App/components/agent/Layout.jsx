@@ -20,6 +20,7 @@ export default class Layout extends React.Component {
             <Nav>
               <MenuItem><Link to="/">My Tickets</Link></MenuItem>
               <MenuItem><Link to="/tickets/new">New Tickets</Link></MenuItem>
+              <MenuItem><Link to="/reports">Reports</Link></MenuItem>
             </Nav>
 
             <Nav pullRight>

@@ -27,7 +27,11 @@ class Ticket < ApplicationRecord
   end
 
   def resolve
-    touch
+    update_attributes(closed_on: Date.today)
+  end
+
+  def self.closed_last_month
+    where("closed_on >= ? AND closed_on <= ?", Date.today.beginning_of_month, Date.today.end_of_month)
   end
 
   def self.unassigned

@@ -26,5 +26,8 @@ Rails.application.routes.draw do
   post "api/accounts/:account_id/customer_toggle.json" => "api/accounts#customer_toggle"
   post "api/accounts/:account_id/agent_toggle.json" => "api/accounts#agent_toggle"
 
+  get "api/reports/agent.json" => "api/reports#agent_reports"
+  get "api/reports/agent.pdf" => "api/reports#agent_reports"
+
   root to: 'spa#dashboard'
 end

@@ -21,9 +21,15 @@ accounts = 1.upto(5).flat_map do |i|
   ]
 end
 
-admins    = Account.includes(account_roles: :role).where(roles: {name: 'admin'})
-agents    = Account.includes(account_roles: :role).where(roles: {name: "agent"    })
-customers = Account.includes(account_roles: :role).where(roles: {name: "customer" })
 
-1.upto(30) do |i| Ticket.create!(customer: customers.sample, title:
+1.upto(30) do |i| Ticket.create!(customer: Account.customers.sample, title:
   "Ticket #{i}", description: "Description for Ticket #{i}") end
+
+current_agent = Account.where(email: "agent1@example.com").first
+(-60..60).each do |days|
+  Ticket.create!(title: "Closed ticket", description: "This is a closed ticket. ",
+                 workflow_state: "resolved",
+                 customer: Account.customers.sample, agent: current_agent,
+                 created_at: Date.today - days.days - rand(5),
+                 closed_on: Date.today - days.days)
+end

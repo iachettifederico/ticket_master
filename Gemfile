@@ -23,7 +23,7 @@ group :development, :test do
   gem "rspec-rails", "~> 3.5.2"
 end
 
-gem 'simplecov', require: false, group: :test
+gem 'simplecov', "~> 0.13.0", require: false, group: :test
 
 group :development do
   gem 'web-console', '~> 3.4.0'
@@ -45,4 +45,5 @@ gem "oj", "~> 2.18.1"
 gem "mystique", "~> 0.5.6"
 gem "awesome_print", "~> 1.7.0"
 gem "workflow", "~> 1.2.0"
-gem "font-awesome-rails"
+gem "font-awesome-rails", "~> 4.7.0.1"
+gem 'prawn-rails', "~> 1.0.0"

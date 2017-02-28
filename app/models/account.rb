@@ -36,4 +36,16 @@ class Account < ApplicationRecord
     end
     touch
   end
+
+  def self.admins
+    Account.includes(account_roles: :role).where(roles: {name: 'admin'})
+  end
+
+  def self.agents
+    Account.includes(account_roles: :role).where(roles: {name: "agent"    })
+  end
+
+  def self.customers
+    Account.includes(account_roles: :role).where(roles: {name: "customer" })
+  end
 end

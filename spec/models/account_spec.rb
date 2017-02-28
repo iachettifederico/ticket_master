@@ -18,9 +18,26 @@ RSpec.describe Account, type: :model do
 
     it "is an customer" do
       customer = Account.create(roles: [Role[:customer]],
-                             email: "a@a.com", password: "123456")
+                                email: "a@a.com", password: "123456")
       expect(customer.customer?).to            eql true
       expect(customer.has_role?(:customer)).to eql true
+    end
+  end
+
+  context "toggling roles" do
+    let(:account) { Account.create(email: "a@a.com", password: "123456") }
+
+    it "ads admin role" do
+      account.toggle_role(:admin)
+
+      expect(account.roles).to include(Role[:admin])
+    end
+
+    it "removes admin role" do
+      account.toggle_role(:admin)
+      account.toggle_role(:admin)
+
+      expect(account.roles).not_to include(Role[:admin])
     end
   end
 end

@@ -6,6 +6,7 @@ class CreateTickets < ActiveRecord::Migration[5.0]
       t.string  :title
       t.text    :description
       t.string  :workflow_state, null: false, default: "new"
+      t.date    :closed_on
 
       t.timestamps
     end

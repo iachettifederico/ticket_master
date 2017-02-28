@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170228132623) do
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "",                       null: false
     t.string   "name"
-    t.string   "auth_token",             default: "PEZyCEGcPjQqI_ZfzLZ29A", null: false
+    t.string   "auth_token",             default: "jh-udNtEIk0gSD9RLz3OYA", null: false
     t.string   "encrypted_password",     default: "",                       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 20170228132623) do
     t.string   "title"
     t.text     "description",    limit: 65535
     t.string   "workflow_state",               default: "new", null: false
+    t.date     "closed_on"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
   end
