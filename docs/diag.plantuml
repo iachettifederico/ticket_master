@@ -1,0 +1,9 @@
+Ticket --* Account : creates (as customer) >
+Ticket --* Account : processes (as agent) >
+
+Account o-- Role : has many >
+
+Account *-- Comment : creates >
+Ticket *-- Comment : has many >
+
+Ticket ..> Role

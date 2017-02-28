@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170228132623) do
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "email",                  default: "",                       null: false
     t.string   "name"
-    t.string   "auth_token",             default: "txIWgUfT2o2c4HHEJ2kNKA", null: false
+    t.string   "auth_token",             default: "DaFNjgn7bF2dCUQUYQXoOA", null: false
     t.string   "encrypted_password",     default: "",                       null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
