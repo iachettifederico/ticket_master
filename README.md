@@ -68,34 +68,19 @@ Note that seeding the database is important. This step will create the default r
 
 # Assumptions you have made - it is good to explain your thought process and the assumptions you have made
 
-* Accounts can have multiple roles on the system.
+* Accounts can have multiple roles on the system. Given that I didn't know what poduct the system was aimed to, I assumed that a user could belong to customer service and also own a copy of said product. For that reason, accounts can be both agents and customers.
+* More than one admin. Even though the first user created (by the seeds) is an admin, he/sh can assign and revoke this role to other users on the system.
+* There must be at least one admin. If the system looses all it's admin accounts, nooce will be able to manage it. For this reason, the first admin assigned will be an admin forever.
 
 # Requirements that you have not covered in your submission, if any
-* testing
-* deployment
+* Front end testing
+* Deployment process
+
 # Issues you have faced while completing the assignment, if any
+As stated on the extension request, I didn't have any experience building SPAs. For that reason, I spent the first 6 and a half days learning `React.js`.
 
-# Constructive feedback for improving the assignment
+For this reason, I didn't have the time to finish everything. It took me way more time to  develop the front-end, leaving me no time to fine tune the application, which let to a non-optimal design of the application as a whole.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I don't think this app is up to great standards, but I'm submitting it either way because it took great efford to produce and it is full featured.
 
-Things you may want to cover:
-
-# Ruby version
-
-# System dependencies
-
-# Configuration
-
-# Database creation
-
-# Database initialization
-
-# How to run the test suite
-
-# Services (job queues, cache servers, search engines, etc.)
-
-# Deployment instructions
-
-* ...
+But as said, there are a lot of fine tune details that are not included in the final design.
